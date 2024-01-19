@@ -45,7 +45,6 @@ while(x!='X'):
         old_letter = input("Old letter: ").upper()
         new_letter = input("New letter: ").lower()
         current_text = current_text.replace(old_letter,new_letter)
-        old_letter = old_letter
         current_alphabet = current_alphabet.replace(old_letter,new_letter)
         print("\nUpdated Ciphertext:")
         print(current_text)        
