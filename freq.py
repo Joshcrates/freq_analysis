@@ -37,30 +37,34 @@ sorted_alphabet.sort(reverse=1,key=second_value)
 for i in range(length):
     sorted_alphabet[i][1]=round(sorted_alphabet[i][1]/cipher_length*100,2)
 
-current_text = text
 x=''
 print("Current Ciphertext:")
-print(current_text)
-current_alphabet = alphabet
+print(text)
 
 while(x!='X'):
-    x= input("\nPress A to display current alphabet, F to display frequencies, C to display current ciphertext, R to replace a letter, or X to exit: ").upper()
+    x= input("\nPress A to display current alphabet, F to display frequencies, C to display current ciphertext, R to replace a letter, U to reset the alphabet, or X to exit: ").upper()
     if x=='A':
-        print(current_alphabet)
-    if x=='F':
+        print(alphabet)
+        print(replaceFromDict(alphabet, replacements))
+    elif x=='F':
         print(sorted_alphabet)
     elif x=='C':
-        print(current_text)
+        print(replaceFromDict(text, replacements))
     elif x=='R':
         old_letter = input("Old letter: ").upper()
         new_letter = input("New letter: ").lower()
-        current_text = current_text.replace(old_letter,new_letter)
-        current_alphabet = current_alphabet.replace(old_letter,new_letter)
-        print("\nUpdated Ciphertext:")
-        print(current_text)        
-        print("\nUpdated Alphabet:")
-        print(alphabet+" ->")
-        print(current_alphabet)
-        
+        if len(old_letter) != len(new_letter):
+            print("Length of old and new do not match!")
+        else:
+            for l in range(len(old_letter)):
+                replacements[old_letter[l]] = new_letter[l]
+            print("\nUpdated Ciphertext:")
+            print(replaceFromDict(text, replacements))        
+            print("\nUpdated Alphabet:")
+            print(alphabet+" ->")
+            print(replaceFromDict(alphabet, replacements))
+    elif x=='U':
+        replacements = {}
+        print("Alphabet reset!")    
     elif x!='X':
         print("Erm what the deuce")
