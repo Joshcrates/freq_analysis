@@ -8,6 +8,16 @@ length = len(alphabet)
 alphabet_count = [['',0]]*length
 starts_with_count = [['',0]]*length
 
+replacements = {}
+
+def replaceFromDict(cipher, replacements):
+    res = cipher
+    for (rep, val) in replacements.items():
+        res = res.replace(rep, val)
+    
+    return res
+
+
 for i in range(length):
     alphabet_count[i] = [alphabet[i],0]
     starts_with_count[i] = [alphabet[i],0]
